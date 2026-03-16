@@ -1,8 +1,8 @@
-# CompanyN IoT Case Study - Data Engineering Pipeline
+# IoT Case Study - Data Engineering Pipeline
 
 ## Overview
 
-This repo has a local, runnable IoT pipeline for CompanyN appliances. You can
+This repo has a local, runnable IoT pipeline for home appliances. You can
 run it on a laptop to see how it works, and the same logic can be scaled up to
 Azure Databricks when you need to handle real production volumes.
 
