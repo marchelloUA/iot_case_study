@@ -1,0 +1,27 @@
+Case Study
+Data Engineer m/f/d
+Please prepare a case study for the interview on the following topic:
+Please imagine that you are a ‘Data Engineer (m/f/d)’ in the organisational unit Smart Home / Electronics (SH/EC), department ‘AI & Data’. In this role, you build the pipelines for data products based on IoT device data. This data can be used for a wide range of purposes, from product improvement to quality management. For the further tasks, assume that you receive the data from hundreds of thousands of networkable devices worldwide.
+    1. For the appliances, pseudonymous data is collected for predefined events after the user has given their consent. The appliances send various data with each status change – e.g. at the start or end of a programme or in the event of errors. You can assume that the data will be provided for you as JSON files. Keep in mind the different nature of the various types of the appliances.
+        a. What challenges can you imagine when processing IoT data?
+        b. Program code in preferably Python or alternatively in R or Julia, which processes the incoming device data (JSON on the following page) so that business analysts can conveniently use the data as simple, flat tables in visualisation tools such as PowerBI. In a future integration of the code, it is sufficient to load the data once a day. You are free to use any libraries/packages you like. Guide the participants through your code (approx. 15 min).
+    2. Please prepare a 10-minute presentation on how your code can be integrated into a cloud environment (preferably Azure, alternatively AWS or GCP). Please answer the following questions:
+        a. Where is your code stored? How do you handle new code changes?
+        b. You want to work with several colleagues on further developing the code. What needs to be considered in terms of the design and management of the code?
+        c. Where is your code executed? Which cloud services could be used and linked conceptually?
+        d.  Are there any other cloud services that are relevant for your pipeline?
+There will be a discussion with the observers after your presentation. You can act freely in terms of methodology and also prepare suitable digital documents. 
+
+Appliance Data:
+                • The metadata DeviceId, TimestampUTC, DeviceType and Status are always present.
+                • Washing machines with a TwinDos dosing system always have two values for TwinDos (for coloureds and whites).
+                • FailureIds is an array of any length.
+                • For coffee machines, each attribute has a unique ID, the value itself (Value) and the associated unit of measurement (Unit).
+
+[{"DeviceId": "4fc82b26aecb47d2", "TimestampUTC": "2023-01-01T07:11:29", "DeviceType": "Washing machine", "Status": "Program Start", "Attributes": {"Temperature": 60, "Temperature_Unit": "Celsius", "SpinningSpeed": 900, "SpinningSpeed_Unit": "Rotations per Minute", "TwinDos": [90, 100], "TwinDos_Unit": "Percentage"}}, 
+{"DeviceId": "4fc82b26aecb47d2", "TimestampUTC": "2023-01-01T09:27:12", "DeviceType": "Washing machine", "Status": "Program End", "Attributes": {"Temperature": 60, "Temperature_Unit": "Celsius", "SpinningSpeed": 900, "SpinningSpeed_Unit": "Rotations per Minute", "TwinDos": [90, 95], "TwinDos_Unit": "Percentage"}}, 
+{"DeviceId": "6b51d431df5d7f14", "TimestampUTC": "2023-01-01T08:12:00", "DeviceType": "Washing machine", "Status": "Program Start", "Attributes": {"Temperature": 104, "Temperature_Unit": "Fahrenheit", "SpinningSpeed": 1100, "SpinningSpeed_Unit": "Rotations per Minute"}}, 
+{"DeviceId": "6b51d431df5d7f14", "TimestampUTC": "2023-01-01T08:12:42", "DeviceType": "Washing machine", "Status": "Program Failure", "Attributes": {"FailureIds": [10, 17, 23]}}, {"DeviceId": "3fdba35f04dc8c46", "TimestampUTC": "2023-01-01T21:57:01", "DeviceType": "Washing machine", "Status": "Program Failure", "Attributes": {"FailureIds": [17]}}, 
+{"DeviceId": "eb1e33e8a81b697b", "TimestampUTC": "2023-01-01T12:23:34", "DeviceType": "Coffee Machine", "Status": "Program End", "Attributes": [{"Id": "Grinding", "Value": 100, "Unit": "Percentage"}, {"Id": "Temperature", "Value": 86, "Unit": "Celsius"}]}, 
+{"DeviceId": "e29c9c180c6279b0", "TimestampUTC": "2023-01-01T12:23:34", "DeviceType": "Coffee Machine", "Status": "Program End", "Attributes": [{"Id": "Temperature", "Value": 86, "Unit": "Celsius"}]}, 
+{"DeviceId": "d59eced1ded07f84", "TimestampUTC": "2023-01-01T18:37:37", "DeviceType": "Dishwasher", "Status": "Program End", "Attributes": {"Temperature": 40, "Temperature_Unit": "Fahrenheit", "QuickPowerWashActive": 1, "QuickPowerWashActive_Unit": "Bit"}}]

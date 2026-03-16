@@ -1,0 +1,10 @@
+[
+  {"DeviceId": "4fc82b26aecb47d2", "TimestampUTC": "2023-01-01T07:11:29", "DeviceType": "Washing machine", "Status": "Program Start", "Attributes": {"Temperature": 60, "Temperature_Unit": "Celsius", "SpinningSpeed": 900, "SpinningSpeed_Unit": "Rotations per Minute", "TwinDos": [90, 100], "TwinDos_Unit": "Percentage"}},
+  {"DeviceId": "4fc82b26aecb47d2", "TimestampUTC": "2023-01-01T09:27:12", "DeviceType": "Washing machine", "Status": "Program End", "Attributes": {"Temperature": 60, "Temperature_Unit": "Celsius", "SpinningSpeed": 900, "SpinningSpeed_Unit": "Rotations per Minute", "TwinDos": [90, 95], "TwinDos_Unit": "Percentage"}},
+  {"DeviceId": "6b51d431df5d7f14", "TimestampUTC": "2023-01-01T08:12:00", "DeviceType": "Washing machine", "Status": "Program Start", "Attributes": {"Temperature": 104, "Temperature_Unit": "Fahrenheit", "SpinningSpeed": 1100, "SpinningSpeed_Unit": "Rotations per Minute"}},
+  {"DeviceId": "6b51d431df5d7f14", "TimestampUTC": "2023-01-01T08:12:42", "DeviceType": "Washing machine", "Status": "Program Failure", "Attributes": {"FailureIds": [10, 17, 23]}},
+  {"DeviceId": "3fdba35f04dc8c46", "TimestampUTC": "2023-01-01T21:57:01", "DeviceType": "Washing machine", "Status": "Program Failure", "Attributes": {"FailureIds": [17]}},
+  {"DeviceId": "eb1e33e8a81b697b", "TimestampUTC": "2023-01-01T12:23:34", "DeviceType": "Coffee Machine", "Status": "Program End", "Attributes": [{"Id": "Grinding", "Value": 100, "Unit": "Percentage"}, {"Id": "Temperature", "Value": 86, "Unit": "Celsius"}]},
+  {"DeviceId": "e29c9c180c6279b0", "TimestampUTC": "2023-01-01T12:23:34", "DeviceType": "Coffee Machine", "Status": "Program End", "Attributes": [{"Id": "Temperature", "Value": 86, "Unit": "Celsius"}]},
+  {"DeviceId": "d59eced1ded07f84", "TimestampUTC": "2023-01-01T18:37:37", "DeviceType": "Dishwasher", "Status": "Program End", "Attributes": {"Temperature": 40, "Temperature_Unit": "Fahrenheit", "QuickPowerWashActive": 1, "QuickPowerWashActive_Unit": "Bit"}}
+]

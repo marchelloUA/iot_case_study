@@ -1,0 +1,103 @@
+# Azure DevOps CI pipeline for the IoT medallion pipeline.
+#
+# Runs on every push to main and on every pull request targeting main.
+# The pipeline installs dependencies, runs the full test suite, and
+# publishes the results to the Azure DevOps test tab.
+#
+# To enable this pipeline:
+#   1. Commit this file to the repo root.
+#   2. In Azure DevOps: Pipelines -> New pipeline -> Azure Repos Git ->
+#      select this repo -> "Existing Azure Pipelines YAML file" ->
+#      pick /azure-pipelines.yml.
+#
+# Databricks deployment (wheel upload + job trigger) can be added as a
+# second stage below once the test stage passes. Use the Databricks CLI
+# or the Databricks DevOps extension from the Marketplace.
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - src/**
+      - tests/**
+      - pyproject.toml
+      - azure-pipelines.yml
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Test
+    displayName: Lint and test
+    jobs:
+      - job: pytest
+        displayName: Run pytest
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.11"
+            displayName: Set Python 3.11
+
+          - script: pip install -e .[test]
+            displayName: Install package and test dependencies
+
+          - script: |
+              python -m pytest tests/ \
+                --tb=short \
+                -q \
+                --junitxml=test-results.xml
+            displayName: Run test suite
+
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: test-results.xml
+              testRunTitle: IoT pipeline unit tests
+            displayName: Publish test results
+
+  # ---------------------------------------------------------------------------
+  # Optional: deploy to Databricks after tests pass.
+  # Uncomment and fill in the variables when you are ready to automate deploys.
+  # Requires the Databricks CLI to be available on the agent, or use the
+  # "Databricks" extension from the Azure DevOps Marketplace.
+  # ---------------------------------------------------------------------------
+  # - stage: Deploy
+  #   displayName: Deploy to Databricks
+  #   dependsOn: Test
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+  #   jobs:
+  #     - job: deploy
+  #       displayName: Upload notebook and trigger job
+  #       steps:
+  #         - script: pip install databricks-cli
+  #           displayName: Install Databricks CLI
+  #
+  #         - script: |
+  #             databricks configure --token <<EOF
+  #             $(DATABRICKS_HOST)
+  #             $(DATABRICKS_TOKEN)
+  #             EOF
+  #           displayName: Configure Databricks CLI
+  #           # DATABRICKS_HOST and DATABRICKS_TOKEN are pipeline variables
+  #           # stored as secrets in the Azure DevOps variable group.
+  #           # Never put tokens in this file.
+  #
+  #         - script: |
+  #             databricks workspace import \
+  #               notebooks/databricks_pipeline_skeleton.ipynb \
+  #               /Shared/iot-pipeline/medallion \
+  #               --language PYTHON \
+  #               --overwrite
+  #           displayName: Upload notebook to workspace
+  #
+  #         - script: |
+  #             databricks jobs run-now --job-id $(DATABRICKS_JOB_ID)
+  #           displayName: Trigger Databricks job

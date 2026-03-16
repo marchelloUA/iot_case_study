@@ -1,0 +1,9 @@
+# All-in-one install for running the pipeline, tests, PySpark notebook, and
+# Jupyter locally. These dependencies are also declared in pyproject.toml split
+# across the core, [test], and [spark] extras. If you installed the package
+# with `pip install -e .[spark,test]` you already have everything except
+# jupyterlab, which is only needed for the optional notebook.
+pandas>=2.0
+pyspark>=3.4
+pytest>=8.0
+jupyterlab>=3.0

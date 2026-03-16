@@ -1,0 +1,26 @@
+we are looking for an Azure Data Bricks Engineer (m/f/d) for our client
+ 
+Start: asap
+Duration: 10 months +
+Location: Remote
+Workload: Full-time
+
+Project goal – in a nutshell
+Operation, optimization, and further development of Azure-based data products (device usage, events, telemetry).
+Focus on stable pipelines, high data quality, governance, monitoring, and performance.
+
+Key challenges
+* Integration of different types of data: events, telemetry, images, metadata
+* Ensuring stable, SLA-compliant pipelines & incident management
+	• Performance optimization & cost control
+* Governance & operating standards: monitoring, CI/CD, versioning, documentation
+Key tasks of the consultant
+* Operation & support of productive data pipelines (1st/2nd level)
+* Development & further development of new data products on Azure
+* Databricks development (PySpark, SQL)
+	• Integration of new data streams (events, telemetry, images, metadata)
+* Performance and cost optimization
+* Implementation of monitoring, alerting, data quality checks
+* CI/CD & code reviews via Azure DevOps
+* Ensuring stable operations (≥99% availability)
+* Documentation & governance (Atlassian)
